@@ -15,6 +15,8 @@ namespace HTF.HTF
             await ChallengeA2.Run();
             await ChallengeB1.Run();
             await ChallengeB2.Run();
+            //await ChallengeA3.Run();
+            //await ChallengeB3.Run();
         }
 
         
