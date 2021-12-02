@@ -11,7 +11,10 @@ namespace HTF.HTF
     {
         private static async Task Main(string[] args)
         {
+            await ChallengeA1.Run();
+            await ChallengeA2.Run();
             await ChallengeB1.Run();
+            await ChallengeB2.Run();
         }
 
         
