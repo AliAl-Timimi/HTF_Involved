@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "HTF.HTF/1.0.0": {
+        "runtime": {
+          "HTF.HTF.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HTF.HTF/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
