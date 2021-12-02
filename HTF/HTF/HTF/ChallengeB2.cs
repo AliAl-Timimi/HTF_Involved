@@ -18,14 +18,14 @@ namespace HTF.HTF
 
             try
             {
-                var puzzleUrl = "api/path/2/medium/Sample";
+                var puzzleUrl = "api/path/2/medium/Puzzle";
                 var puzzleGetResponse = await _client.GetStringAsync(puzzleUrl);
                 Console.WriteLine(puzzleGetResponse);
                 var puzzleAnswer = GetAnswer(puzzleGetResponse);
                 Console.WriteLine(puzzleAnswer);
-                //var puzzlePostResponse = await _client.PostAsJsonAsync(puzzleUrl, puzzleAnswer);
-                //var puzzlePostResponseValue = await puzzlePostResponse.Content.ReadAsStringAsync();
-                //Console.WriteLine(puzzlePostResponseValue);
+                var puzzlePostResponse = await _client.PostAsJsonAsync(puzzleUrl, puzzleAnswer);
+                var puzzlePostResponseValue = await puzzlePostResponse.Content.ReadAsStringAsync();
+                Console.WriteLine(puzzlePostResponseValue);
                 
             }
             catch (Exception e)
@@ -56,24 +56,34 @@ namespace HTF.HTF
             Dictionary<string, int> pastPatterns = new ();
             int repeats;
             string possiblePattern;
-            string mostRepPattern = "";
             for (int i = 0; i < input.Length; i++)
             {
                 for (int j = 2; j + i < input.Length; j++)
                 {
                     possiblePattern = input.Substring(i, j);
                     repeats = 0;
-                    for (int k = 0; k < input.Length-2; k++)
+                    for (int k = 0; k <= input.Length-possiblePattern.Length; k++)
                     {
-                        if (input.Substring(k, possiblePattern.Length) == possiblePattern)
+                        if (input.Substring(k, possiblePattern.Length) == possiblePattern) 
                             repeats++;
                     }
                     if (repeats > 1 && !pastPatterns.ContainsKey(possiblePattern))
                         pastPatterns.Add(possiblePattern, repeats);
                 }
             }
-            
-            return int.Parse(pastPatterns.Count + mostRepPattern);
+
+            string pattern="";
+            int reps = 0;
+            foreach (var i in pastPatterns)
+            {
+                if (i.Value > reps)
+                {
+                    reps = i.Value;
+                    pattern = i.Key;
+                }
+            }
+
+            return int.Parse(pastPatterns.Count + pattern);
         }
     }
 }
